@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grill & Ogień Lębork — Kaukaska kuchnia z aromatem i tradycją</title>
+<meta name="description" content="Grill & Ogień, ul. Wita Stwosza 13, Lębork. Kaukaska kuchnia z aromatem i tradycją — chinkali, szaszłyki z grilla, chaczapuri. Rezerwacje: 694 694 433.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ash:#15110E;
+    --ash-2:#1E1712;
+    --ember:#E1601F;
+    --ember-soft:#F2884A;
+    --wine:#6E1B24;
+    --clay:#AD6339;
+    --gold:#C6A24B;
+    --cream:#F3E9D8;
+    --cream-dim:#C9BBA4;
+    --line: rgba(243,233,216,0.14);
+    --radius: 2px;
+    --disp: 'Fraunces', serif;
+    --body: 'Manrope', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ash);color:var(--cream);font-family:var(--body);line-height:1.6;overflow-x:hidden;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember-soft);}
+  h1,h2,h3{font-family:var(--disp);font-weight:600;color:var(--cream);}
+  ::selection{background:var(--ember);color:var(--ash);}
+
+  .ember-divider{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto;color:var(--gold);opacity:.85;}
+  .ember-divider svg{width:120px;height:22px;}
+  .ember-divider .stem{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(21,17,14,0.72);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s ease, background .3s ease;}
+  header.scrolled{border-color:var(--line);background:rgba(21,17,14,0.94);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:40px;width:auto;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--cream-dim);position:relative;padding:4px 0;transition:color .25s ease;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--cream);}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ember);transition:width .3s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:11px 20px;border:1px solid var(--gold);color:var(--gold);transition:all .3s ease;white-space:nowrap;}
+  .nav-cta:hover{background:var(--gold);color:var(--ash);}
+  .burger{display:none;background:none;border:0;color:var(--cream);cursor:pointer;padding:6px;}
+
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:150px 32px 90px;overflow:hidden;
+    background:radial-gradient(ellipse 50% 60% at 15% 100%, rgba(225,96,31,0.22), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 90% 10%, rgba(110,27,36,0.35), transparent 70%), var(--ash);}
+  #embers{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
+  .hero-text .eyebrow{display:block;margin-bottom:20px;}
+  .hero h1{font-size:clamp(40px, 5.4vw, 72px);line-height:1.02;letter-spacing:-0.01em;text-wrap:balance;}
+  .hero h1 em{font-style:italic;font-weight:400;background:linear-gradient(100deg, var(--ember-soft), var(--gold) 60%, var(--ember-soft));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-sub{max-width:480px;margin:24px 0 0;font-size:17.5px;color:var(--cream-dim);font-weight:500;}
+  .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+  .btn{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:16px 30px;border-radius:var(--radius);font-weight:500;display:inline-flex;align-items:center;gap:10px;transition:transform .25s ease, box-shadow .25s ease, background .25s ease;}
+  .btn-primary{background:var(--ember);color:#1a1109;box-shadow:0 8px 30px -8px rgba(225,96,31,0.6);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(225,96,31,0.75);}
+  .btn-ghost{border:1px solid var(--line);color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--cream-dim);transform:translateY(-2px);}
+  .hero-stats{margin-top:56px;display:flex;gap:50px;flex-wrap:wrap;font-family:var(--mono);}
+  .hero-stats .num{font-family:var(--disp);font-size:32px;color:var(--gold);}
+  .hero-stats .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-dim);margin-top:4px;}
+
+  .hero-photo{position:relative;}
+  .hero-photo .frame{position:relative;aspect-ratio:4/5;border:1px solid var(--line);padding:14px;}
+  .hero-photo .frame img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03);}
+  .hero-photo .frame::before{content:"";position:absolute;inset:-1px;border:1px solid var(--gold);opacity:.35;pointer-events:none;}
+  .hero-photo .cap{position:absolute;left:28px;bottom:28px;background:rgba(21,17,14,0.82);backdrop-filter:blur(6px);padding:12px 18px;border:1px solid var(--line);}
+  .hero-photo .cap .name{font-family:var(--disp);font-size:16px;color:var(--cream);}
+  .hero-photo .cap .ka{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);}
+
+  section{padding:130px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:64px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(34px,4.4vw,54px);margin-top:16px;line-height:1.05;}
+  .section-head p{color:var(--cream-dim);margin-top:18px;font-size:17px;max-width:520px;}
+  .section-head.center p{margin-left:auto;margin-right:auto;}
+
+  .story{background:var(--ash-2);}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .story-art{position:relative;aspect-ratio:4/5;border:1px solid var(--line);overflow:hidden;}
+  .story-art img{width:100%;height:100%;object-fit:cover;}
+  .story-copy p{color:var(--cream-dim);margin-top:20px;font-size:16.5px;}
+  .story-copy .lead{color:var(--cream);font-size:19px;font-family:var(--disp);font-style:italic;font-weight:400;line-height:1.5;}
+
+  /* ---------- menu tabs ---------- */
+  .dishes{background:var(--ash);}
+  .tab-bar{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:44px;}
+  .tab-btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--cream-dim);background:none;border:none;padding:14px 18px;cursor:pointer;position:relative;transition:color .25s ease;}
+  .tab-btn::after{content:"";position:absolute;left:18px;right:18px;bottom:-1px;height:2px;background:var(--ember);transform:scaleX(0);transition:transform .3s ease;}
+  .tab-btn:hover{color:var(--cream);}
+  .tab-btn.active{color:var(--gold);}
+  .tab-btn.active::after{transform:scaleX(1);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;animation:fadeIn .4s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .menu-list{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;}
+  .menu-item{display:flex;justify-content:space-between;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .menu-item .mi-name{font-family:var(--disp);font-size:18px;color:var(--cream);}
+  .menu-item .mi-desc{font-size:13.5px;color:var(--cream-dim);margin-top:4px;max-width:340px;}
+  .menu-item .mi-price{font-family:var(--mono);font-size:15px;color:var(--gold);white-space:nowrap;padding-top:2px;}
+  .menu-note{margin-top:32px;font-size:13px;color:var(--cream-dim);font-family:var(--mono);opacity:.75;}
+
+  .experience{background:var(--wine);position:relative;overflow:hidden;padding:90px 0;}
+  .experience::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 90% 20%, rgba(225,96,31,0.25), transparent 60%);}
+  .exp-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+  .exp-item{text-align:center;}
+  .exp-item svg{width:30px;height:30px;margin:0 auto 18px;}
+  .exp-item svg *{stroke:var(--gold);}
+  .exp-item h4{font-family:var(--disp);font-size:19px;font-weight:600;color:var(--cream);}
+  .exp-item p{color:rgba(243,233,216,0.72);font-size:13.5px;margin-top:6px;}
+
+  .reviews{background:var(--ash-2);}
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  .review-card{border:1px solid var(--line);padding:34px 30px;background:var(--ash);display:flex;flex-direction:column;gap:20px;}
+  .stars{color:var(--gold);letter-spacing:3px;font-size:14px;}
+  .review-card p{color:var(--cream);font-size:15.5px;line-height:1.65;flex-grow:1;}
+  .review-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px;}
+  .review-meta .who{font-family:var(--mono);font-size:12px;color:var(--cream-dim);letter-spacing:.04em;}
+  .review-meta .tag{font-family:var(--mono);font-size:11px;color:var(--ember-soft);text-transform:uppercase;}
+  .review-scores{display:flex;gap:14px;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--cream-dim);flex-wrap:wrap;}
+  .review-scores span b{color:var(--gold);}
+
+  .gallery{background:var(--ash);}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:14px;}
+  .gal-grid > div:nth-child(1){grid-column:span 2;grid-row:span 2;}
+  .gal-grid > div:nth-child(4){grid-row:span 2;}
+  .gal-cell{position:relative;overflow:hidden;border:1px solid var(--line);}
+  .gal-cell img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .gal-cell:hover img{transform:scale(1.06);}
+  .gal-cell::after{content:attr(data-label);position:absolute;bottom:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);background:rgba(21,17,14,0.55);padding:4px 9px;}
+
+  .cta{background:linear-gradient(160deg, var(--ember) 0%, #b8460f 55%, var(--wine) 130%);text-align:center;padding:120px 0;position:relative;overflow:hidden;}
+  .cta h2{color:#1a0f07;font-size:clamp(32px,5vw,58px);}
+  .cta p{color:rgba(26,15,7,0.78);margin-top:18px;font-size:17px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .cta .hero-actions{margin-top:38px;justify-content:center;}
+  .cta .btn-primary{background:#1a0f07;color:var(--ember-soft);box-shadow:none;}
+  .cta .btn-primary:hover{background:#0f0904;}
+  .cta .btn-ghost{border-color:rgba(26,15,7,0.4);color:#1a0f07;}
+  .cta .btn-ghost:hover{border-color:#1a0f07;}
+
+  footer{background:var(--ash-2);padding:90px 0 40px;}
+  .foot-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr;gap:50px;}
+  .foot-brand img{height:46px;margin-bottom:16px;}
+  .foot-brand p{color:var(--cream-dim);font-size:14.5px;max-width:280px;}
+  .foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .foot-col p, .foot-col a{display:block;color:var(--cream-dim);font-size:14.5px;margin-bottom:10px;}
+  .foot-col a:hover{color:var(--cream);}
+  .foot-col .hours-row{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12.5px;}
+  .foot-social{display:flex;gap:14px;margin-top:6px;}
+  .foot-social a{border:1px solid var(--line);width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:border-color .25s ease;}
+  .foot-social a:hover{border-color:var(--gold);}
+  .foot-social svg{width:16px;height:16px;stroke:var(--cream-dim);}
+  .map-embed{width:100%;height:100%;min-height:180px;border:1px solid var(--line);filter:grayscale(0.4) invert(0.92) contrast(0.9);}
+  .foot-bottom{margin-top:80px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11.5px;color:var(--cream-dim);}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width: 900px){
+    .hero-inner{grid-template-columns:1fr;gap:50px;}
+    .hero-photo{max-width:380px;margin:0 auto;}
+    .story-grid{grid-template-columns:1fr;gap:44px;}
+    .story-art{max-width:340px;margin:0 auto;}
+    .menu-list{grid-template-columns:1fr;}
+    .exp-grid{grid-template-columns:1fr 1fr;row-gap:40px;}
+    .review-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;}
+    .gal-grid > div:nth-child(1){grid-column:span 2;grid-row:span 1;}
+    .gal-grid > div:nth-child(4){grid-row:span 1;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 680px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--ash);flex-direction:column;justify-content:flex-start;padding:50px 32px;gap:28px;transform:translateX(100%);transition:transform .35s ease;}
+    .nav-links.open{transform:translateX(0);}
+    .nav-links .nav-cta{display:inline-flex;margin-top:10px;}
+    .burger{display:block;}
+    section{padding:90px 0;}
+    .foot-grid{grid-template-columns:1fr;gap:36px;}
+    .hero-stats{gap:34px;}
+  }
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <nav>
+    <a href="#top" class="brand"><img src="assets/logo.png" alt="Grill & Ogień — Lębork"></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#historia">Historia</a>
+      <a href="#menu">Menu</a>
+      <a href="#opinie">Opinie</a>
+      <a href="#galeria">Klimat</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="tel:+48694694433" class="nav-cta">694 694 433</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Otwórz menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <canvas id="embers"></canvas>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="eyebrow">Lębork · ul. Wita Stwosza 13</span>
+      <h1>Kaukaska kuchnia<br>z <em>aromatem</em> i tradycją</h1>
+      <p class="hero-sub">Ognisty smak przyjemności — chinkali lepione ręcznie, mięso prosto z żaru i gościnność, przez którą nie chce się wychodzić.</p>
+      <div class="hero-actions">
+        <a href="tel:+48694694433" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          694 694 433
+        </a>
+        <a href="#menu" class="btn btn-ghost">Zobacz menu</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">5.0</div><div class="lbl">Ocena gości</div></div>
+        <div><div class="num">13–22</div><div class="lbl">Otwarte codziennie</div></div>
+        <div><div class="num">2–8</div><div class="lbl">Stolik dla każdej grupy</div></div>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <div class="frame">
+        <img src="assets/chaczapuri.webp" alt="Chaczapuri z masłem i jajkiem — Grill & Ogień Lębork">
+      </div>
+      <div class="cap"><span class="ka">აჭარული · z pieca</span><div class="name">Chaczapuri po adżarsku</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ember-divider">
+  <div class="stem"></div>
+  <svg viewBox="0 0 120 22" fill="none"><path d="M2 11c8-9 16 9 24 0s16-9 24 0 16 9 24 0 16-9 24 0 16 9 20 0" stroke="currentColor" stroke-width="1.2"/></svg>
+  <div class="stem"></div>
+</div>
+
+<!-- ============ HISTORIA ============ -->
+<section class="story" id="historia">
+  <div class="wrap story-grid">
+    <div class="story-art reveal">
+      <img src="assets/wnetrze.webp" alt="Wnętrze restauracji Grill & Ogień w Lęborku">
+    </div>
+    <div class="story-copy reveal">
+      <span class="eyebrow">Nasza historia</span>
+      <h2 style="margin-top:14px;font-size:clamp(30px,3.6vw,44px);">Kaukaski ogień w sercu Lęborka</h2>
+      <p class="lead">„Zna się na swojej robocie i widać, że robi to z pasją” — tak goście piszą o naszym kucharzu. To zdanie mówi wszystko, na czym nam zależy.</p>
+      <p>Grill &amp; Ogień przy ul. Wita Stwosza 13 to kaukaska kuchnia z aromatem i tradycją — chinkali zawiązywane ręcznie, chaczapuri prosto z pieca i mięso, które trafia na ruszt dopiero wtedy, gdy żar jest idealny.</p>
+      <p>Kameralna sala, ciepłe drewno i zielone fotele tworzą klimat, w którym — jak piszą nasi goście — „czuć, że wszystko robione jest z pasją”. Bez pośpiechu, ale i bez długiego czekania: na dania czeka się zwykle 10–30 minut.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ember-divider">
+  <div class="stem"></div>
+  <svg viewBox="0 0 120 22" fill="none"><path d="M2 11c8-9 16 9 24 0s16-9 24 0 16 9 24 0 16-9 24 0 16 9 20 0" stroke="currentColor" stroke-width="1.2"/></svg>
+  <div class="stem"></div>
+</div>
+
+<!-- ============ MENU ============ -->
+<section class="dishes" id="menu">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Karta dań</span>
+      <h2>Menu Grill &amp; Ogień</h2>
+      <p>Kaukaskie klasyki i dania prosto z rusztu — pełna karta czeka na miejscu, poniżej nasze must-try.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="tab-bar" id="tabBar">
+        <button class="tab-btn active" data-tab="grill">Z grilla</button>
+        <button class="tab-btn" data-tab="chinkali">Chinkali</button>
+        <button class="tab-btn" data-tab="zupy">Zupy i sałatki</button>
+        <button class="tab-btn" data-tab="special">Special i dla dzieci</button>
+        <button class="tab-btn" data-tab="napoje">Napoje</button>
+        <button class="tab-btn" data-tab="dodatki">Dodatki i na słodko</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="grill">
+        <div class="menu-list">
+          <div class="menu-item"><div><div class="mi-name">Karkówka wieprzowa</div><div class="mi-desc">Chlebek lawasz, sos, marynowana cebula, ogórek kiszony, surówka, ziemniaki opiekane.</div></div><div class="mi-price">59 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Polędwica wieprzowa</div><div class="mi-desc">Grillowana, podawana z lawaszem, sosem, surówką i ziemniakami opiekanymi.</div></div><div class="mi-price">59 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Żebra wieprzowe sous vide</div><div class="mi-desc">Z grilla, z lawaszem, sosem, marynowaną cebulą, ogórkiem i ziemniakami.</div></div><div class="mi-price">58 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Filet z kurczaka</div><div class="mi-desc">Grillowana pierś, lawasz, sos, marynowana cebula, ogórek, surówka, ziemniaki.</div></div><div class="mi-price">54 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Lula wołowina</div><div class="mi-desc">Mięso wołowe, chleb lawasz, surówka, ogórek kiszony, cebula marynowana, sos.</div></div><div class="mi-price">50 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Lula drobiowa</div><div class="mi-desc">Mięso drobiowe, lawasz, surówka, ogórek kiszony, cebula marynowana, sos.</div></div><div class="mi-price">44 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Skrzydełka</div><div class="mi-desc">Z grilla, z lawaszem, sosem, marynowaną cebulą, ogórkiem i ziemniakami — hit karty.</div></div><div class="mi-price">36 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Kiełbaska wieprzowa</div><div class="mi-desc">Grillowana, z lawaszem, sosem, surówką i ziemniakami opiekanymi.</div></div><div class="mi-price">33 zł</div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="chinkali">
+        <div class="menu-list">
+          <div class="menu-item"><div><div class="mi-name">Chinkali z serem i ziołami</div><div class="mi-desc">Gruzińskie pierogi lepione ręcznie, 5 sztuk — „sakiewki wymiatają”, mówią nasi goście.</div></div><div class="mi-price">36 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Chinkali z jagodami</div><div class="mi-desc">Chinkali na słodko — deserowa wersja klasyki.</div></div><div class="mi-price">26 zł</div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="zupy">
+        <div class="menu-list">
+          <div class="menu-item"><div><div class="mi-name">Tradycyjna zupa Charczo</div><div class="mi-desc">Z ryżem, wkładką mięsną, kolendrą, orzechami włoskimi i śmietaną.</div></div><div class="mi-price">29 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Sałatka z wołowiną</div><div class="mi-desc">Papryka, czerwona fasola, wołowina, cebula marynowana, orzechy włoskie.</div></div><div class="mi-price">40 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Sałatka z kurczakiem i estragonem</div><div class="mi-desc">Kurczak, pomarańcza, sałata, ser, estragon, orzechy włoskie, granat, autorski sos.</div></div><div class="mi-price">39 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Sałatka prosto z Kaukazu</div><div class="mi-desc">Pomidor, ogórek, cebula czerwona, dressing z orzechów włoskich.</div></div><div class="mi-price">35 zł</div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="special">
+        <div class="menu-list">
+          <div class="menu-item"><div><div class="mi-name">Grillowany stek z polędwicy wołowej</div><div class="mi-desc">Nasza specjalność szefa kuchni.</div></div><div class="mi-price">65 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Tatar z polędwicy wołowej</div><div class="mi-desc">Tatar z delikatnej polędwicy wołowej.</div></div><div class="mi-price">44 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Chrupiące mini filety z kurczaka</div><div class="mi-desc">Smażone mini filety z frytkami i sosem — dla najmłodszych gości.</div></div><div class="mi-price">35 zł</div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="napoje">
+        <div class="menu-list">
+          <div class="menu-item"><div><div class="mi-name">Lemoniada gruzińska</div><div class="mi-desc">Tradycyjna receptura.</div></div><div class="mi-price">17 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Latte Macchiato</div><div class="mi-desc">&nbsp;</div></div><div class="mi-price">17 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Cappuccino</div><div class="mi-desc">&nbsp;</div></div><div class="mi-price">13 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Coca-Cola / Sprite / Fanta 0,5l</div><div class="mi-desc">Butelka.</div></div><div class="mi-price">13 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Kawa z mlekiem</div><div class="mi-desc">&nbsp;</div></div><div class="mi-price">11 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Coca-Cola / Sprite / Fanta 0,33l</div><div class="mi-desc">Puszka.</div></div><div class="mi-price">12 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Espresso / Kawa czarna / Herbata</div><div class="mi-desc">&nbsp;</div></div><div class="mi-price">10 zł</div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="dodatki">
+        <div class="menu-list">
+          <div class="menu-item"><div><div class="mi-name">Mix warzyw prosto z grilla</div><div class="mi-desc">Cukinia, papryka, pieczarka, czerwona cebula.</div></div><div class="mi-price">17 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Ciasto sezonowe</div><div class="mi-desc">Na słodkie zakończenie posiłku.</div></div><div class="mi-price">25 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Frytki Steakhouse</div><div class="mi-desc">&nbsp;</div></div><div class="mi-price">15 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Cebula marynowana / Ogórek kiszony</div><div class="mi-desc">&nbsp;</div></div><div class="mi-price">6 zł</div></div>
+          <div class="menu-item"><div><div class="mi-name">Sos pomidorowo-ziołowy / czosnkowy</div><div class="mi-desc">Także w wersji ostrej.</div></div><div class="mi-price">5 zł</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">* Ceny aktualne na dzień publikacji strony, mogą ulec zmianie — pełna karta dostępna na miejscu.</p>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE STRIP ============ -->
+<section class="experience">
+  <div class="wrap exp-grid">
+    <div class="exp-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+      <h4>Bardzo cicho</h4>
+      <p>Kameralny klimat sprzyjający rozmowie</p>
+    </div>
+    <div class="exp-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14.5 14c2.4.4 4.5 2.3 4.5 5"/></svg>
+      <h4>Dla każdej grupy</h4>
+      <p>Stoliki 2, 3–4 i 5–8 osobowe</p>
+    </div>
+    <div class="exp-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <h4>10–30 minut</h4>
+      <p>Krótki czas oczekiwania na dania z żaru</p>
+    </div>
+    <div class="exp-item reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.4-9.5 9-9.5 9z"/></svg>
+      <h4>Obsługa z pasją</h4>
+      <p>Znajomość karty i szczera gościnność</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPINIE ============ -->
+<section class="reviews" id="opinie">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Prosto od gości</span>
+      <h2>Nie musisz wierzyć nam na słowo</h2>
+    </div>
+    <div class="review-grid reveal">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>Bardzo się cieszę, że tam trafiłem — jedzenie zdecydowanie polecam pod względem smaku i wyglądu podanych dań. Wszystko mi pasowało, czułem się tam po prostu dobrze.</p>
+        <span class="review-scores"><span>Jedzenie <b>5/5</b></span><span>Obsługa <b>5/5</b></span><span>Klimat <b>5/5</b></span></span>
+        <div class="review-meta"><span class="who">Gość Google</span><span class="tag">Bardzo cicho</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>To było nasze pierwsze spotkanie z kuchnią gruzińską, ale nie zawiodła — dania przepyszne, świetnie doprawione, aromatyczne. Obsługa bardzo miła i pomocna.</p>
+        <span class="review-scores"><span>Jedzenie <b>5/5</b></span><span>Obsługa <b>5/5</b></span><span>Klimat <b>5/5</b></span></span>
+        <div class="review-meta"><span class="who">Gość Google</span><span class="tag">Grupa 3–4 os.</span></div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>Super jedzonko w całkiem dobrej cenie. Coś innego na mapie Lęborka. Pychotka!</p>
+        <span class="review-scores"><span>Jedzenie <b>5/5</b></span><span>Obsługa <b>5/5</b></span><span>Klimat <b>5/5</b></span></span>
+        <div class="review-meta"><span class="who">Gość Google</span><span class="tag">10–30 min</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIA / KLIMAT ============ -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Klimat lokalu</span>
+      <h2>Zajrzyj do środka</h2>
+      <p>Kilka kadrów z naszej sali i kuchni — reszta czeka na Was na miejscu.</p>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="gal-cell" data-label="Sala restauracji"><img src="assets/wnetrze.webp" alt="Sala restauracji Grill & Ogień"></div>
+      <div class="gal-cell" data-label="Chinkali"><img src="assets/chinkali-surowe.png" alt="Świeżo lepione chinkali"></div>
+      <div class="gal-cell" data-label="Szaszłyki z grilla"><img src="assets/szaszlyki.png" alt="Szaszłyki na grillu"></div>
+      <div class="gal-cell" data-label="Chaczapuri"><img src="assets/chaczapuri.webp" alt="Chaczapuri po adżarsku"></div>
+      <div class="gal-cell" data-label="Stek z rusztu"><img src="assets/stek-grill.png" alt="Stek prosto z grilla"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA REZERWACJA ============ -->
+<section class="cta" id="rezerwacja">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#3a2211;">Stolik czeka</span>
+    <h2>Usiądź przy naszym ogniu</h2>
+    <p>Rezerwacje telefoniczne przyjmujemy codziennie w godzinach 13:00–22:00. Grupy 2, 3–4 oraz 5–8-osobowe mile widziane.</p>
+    <div class="hero-actions">
+      <a href="tel:+48694694433" class="btn btn-primary">Zadzwoń: 694 694 433</a>
+      <a href="#kontakt" class="btn btn-ghost">Zobacz lokalizację</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / KONTAKT ============ -->
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top"><img src="assets/logo.png" alt="Grill & Ogień"></a>
+        <p>Kaukaska kuchnia z aromatem i tradycją. Ognisty smak przyjemności — Lębork.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/grill_i_ogien/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.facebook.com/search/top?q=grill%20i%20ogie%C5%84%20l%C4%99bork" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 8h-2a3 3 0 0 0-3 3v10M8 14h6"/><circle cx="12" cy="12" r="9"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Adres</h5>
+        <p>ul. Wita Stwosza 13</p>
+        <p>84-300 Lębork</p>
+      </div>
+      <div class="foot-col">
+        <h5>Godziny otwarcia</h5>
+        <div class="hours-row"><span>Pon–Niedz</span><span>13:00–22:00</span></div>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt i dojazd</h5>
+        <a href="tel:+48694694433">694 694 433</a>
+        <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Wita%20Stwosza%2013%2C%2084-300%20L%C4%99bork&z=16&output=embed"
+          title="Mapa — Grill & Ogień, ul. Wita Stwosza 13, Lębork"></iframe>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Grill &amp; Ogień, Lębork</span>
+      <span>ul. Wita Stwosza 13 · 694 694 433</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+  }));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector(`.tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+    });
+  });
+
+  const canvas = document.getElementById('embers');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let particles = [];
+  function resize(){ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  function makeParticle(){
+    return { x: Math.random()*canvas.width, y: canvas.height + Math.random()*100,
+      r: 0.6 + Math.random()*1.8, speed: 0.3 + Math.random()*0.9, drift: (Math.random()-0.5)*0.4,
+      alpha: 0.15 + Math.random()*0.5, hue: Math.random() > 0.5 ? '225,96,31' : '198,162,75' };
+  }
+  function init(){ resize(); particles = Array.from({length: Math.min(50, Math.floor(canvas.width/18))}, makeParticle); }
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      p.y -= p.speed; p.x += p.drift;
+      if (p.y < -10) Object.assign(p, makeParticle(), {y: canvas.height + 10});
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${p.hue},${p.alpha})`; ctx.fill();
+    });
+    if (!reduceMotion) requestAnimationFrame(tick);
+  }
+  window.addEventListener('resize', resize);
+  init();
+  if (!reduceMotion) requestAnimationFrame(tick); else tick();
+</script>
+
+</body>
+</html>
